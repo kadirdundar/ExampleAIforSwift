@@ -86,3 +86,11 @@ struct KMeans {
         return sqrt(zip(a, b).map { pow($0 - $1, 2) }.reduce(0, +))
     }
 }
+
+
+let points = [[1.0, 2.0], [1.5, 2.5], [3.0, 4.0], [5.0, 7.0], [3.5, 5.0], [4.5, 5.0], [3.5, 4.5]]
+let kMeans = KMeans(k: 4, points: points)
+let clusters = kMeans.cluster()
+
+// clusters is an array of arrays, where each inner array contains the indices of the points belonging to the same cluster
+print(clusters) // [[0, 1, 2, 3], [4, 5, 6]]
