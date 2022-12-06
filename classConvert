@@ -1,0 +1,18 @@
+class GeoPoint {
+    let latitude: Double
+    let longitude: Double
+
+    init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+
+    func toArray() -> [Double] {
+        return [latitude, longitude]
+    }
+}
+
+// Example usage
+let geopoint = GeoPoint(latitude: 37.4220, longitude: -122.0841)
+let data = geopoint.toArray()
+print(data) // [37.4220, -122.0841]
