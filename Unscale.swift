@@ -1,32 +1,19 @@
-func scaleData(data: [[Double]]) -> [[Double]] {
-    // Find the minimum and maximum values for each feature.
-    var mins = [Double](repeating: Double.greatestFiniteMagnitude, count: data[0].count)
-    var maxes = [Double](repeating: -Double.greatestFiniteMagnitude, count: data[0].count)
-    for datapoint in data {
-        for i in 0..<datapoint.count {
-            let value = datapoint[i]
-            if value < mins[i] {
-                mins[i] = value
+    var unscaledClusters = [[[Double]]]()
+    for cluster in clusters {
+        var unscaledCluster = [[Double]]()
+        for datapoint in cluster {
+            var unscaledDatapoint = [Double]()
+            for i in 0..<datapoint.count {
+                let scaledValue = datapoint[i]
+                let min = mins[i]
+                let max = maxes[i]
+                let unscaledValue = min + scaledValue * (max - min)
+                unscaledDatapoint.append(unscaledValue)
             }
-            if value > maxes[i] {
-                maxes[i] = value
-            }
+            unscaledCluster.append(unscaledDatapoint)
         }
+        unscaledClusters.append(unscaledCluster)
     }
     
-    // Scale the data using Min-Max scaling.
-    var scaledData = [[Double]]()
-    for datapoint in data {
-        var scaledDatapoint = [Double]()
-        for i in 0..<datapoint.count {
-            let value = datapoint[i]
-            let min = mins[i]
-            let max = maxes[i]
-            let scaledValue = (value - min) / (max - min)
-            scaledDatapoint.append(scaledValue)
-        }
-        scaledData.append(scaledDatapoint)
-    }
-    
-    return scaledData
+    return unscaledClusters
 }
