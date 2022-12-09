@@ -3,11 +3,13 @@ struct KMeansClusterer{
     let data: [[Double]]
     let k: Int
     let maxElementCount: Int
+    let iterations: Int
     
-    init(data: [[Double]], k: Int, maxElementCount: Int) {
+    init(data: [[Double]], k: Int, maxElementCount: Int, iterations: Int) {
         self.data = data
         self.k = k
         self.maxElementCount = maxElementCount
+        self.iterations = iterations
     }
     func cluster() -> [[[Double]]] {
         // Öncelikle verileri kümelerine ayrılacak şekilde rasgele dağıtıyoruz.
