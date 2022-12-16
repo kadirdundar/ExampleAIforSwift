@@ -14,3 +14,4 @@ db.collection("collection_name").whereField("email", isEqualTo: email)
             }
         }
     }
+//denendi başarısız
